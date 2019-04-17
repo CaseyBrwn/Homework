@@ -29,21 +29,36 @@ describe Dessert do
 
   describe "#add_ingredient" do
     it "adds an ingredient to the ingredients array"
-    expect(brownie).to recieve(add_ingredient).with(milk)
+    brownie.add_ingredient("chocolate")
+    expect(brownie.add_ingredient).to include("chocolate")
   end
 
   describe "#mix!" do
     it "shuffles the ingredient array"
+  ingredients = ["choclate", "sugar", "your_mom"]
+  ingredients.each do |ingredient|
+    brownie.add_ingredient(ingredient)
+  end
+
+  expect(brownie.ingredient).to eq(ingredients)
+  brownie.mix
+  expect(brownie.ingredient).not_to eq(ingredients)
+  in
+
   end
 
   describe "#eat" do
     it "subtracts an amount from the quantity"
+    brownie.eat(20)
+    expect(brownie.quantity).to eq(30)
 
     it "raises an error if the amount is greater than the quantity"
+    expect {brownie.eat(52)}.to raise_error()
   end
 
   describe "#serve" do
     it "contains the titleized version of the chef's name"
+    brownie.serve
   end
 
   describe "#make_more" do
